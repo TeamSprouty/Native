@@ -16,6 +16,7 @@ const NiceButton = withRouter(({ history, color, text, link}) => (
 
 export default class LoginPassword extends React.Component {
   render() {
+    console.log(this.props);
     return (
       <Container>
         <Content contentContainerStyle={styles.container}>

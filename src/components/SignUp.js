@@ -3,11 +3,10 @@ import { StyleSheet } from 'react-native';
 import { Container, Header, Content,Text, Button, Title, Form, Item, Input, Label } from 'native-base';
 import { withRouter } from 'react-router-native';
 
-const NiceButton = withRouter(({ history, color, text, link,addEmail, email}) => (
+const NiceButton = withRouter(({ history, color, text, link}) => (
   <Button block light
     style={{margin: 20, backgroundColor: color}}
     onPress={() => {
-      addEmail(email);
       history.push(link)
     }}
   >
@@ -15,33 +14,31 @@ const NiceButton = withRouter(({ history, color, text, link,addEmail, email}) =>
   </Button>
 ))
 
-export default class LoginUsername extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        email: ''
-    }
-    this.titleHandler = this.titleHandler.bind(this);
-  }
-
-  titleHandler(e) {
-    let {value} = e.target;
-    console.log(e.target.value);
-    this.setState({email: value});
-  } 
-
+export default class SignUp extends React.Component {
   render() {
-    
     return (
       <Container>
         <Content contentContainerStyle={styles.container}>
           <Title style={{fontSize: 60, color: '#FCFCFC'}}>Sprouty</Title>
           <Form style={{alignSelf: 'stretch', padding: 30}}>
             <Item fixedLabel>
-              <Label>Username</Label>
-              <Input onChange={this.titleHandler}/>
+              <Label>Email</Label>
+              <Input />
             </Item>
-            <NiceButton color={'#FF495C'} text={'Password'} link={'/login/password'} addEmail={this.props.addEmail} email={this.state.email}/>
+            <Item fixedLabel>
+              <Label>Password</Label>
+              <Input />
+            </Item>
+            <Item fixedLabel>
+              <Label>Password</Label>
+              <Input />
+            </Item>
+            <Item fixedLabel>
+              <Label>Name</Label>
+              <Input />
+            </Item>
+            <NiceButton color={'#FF495C'} text={'Create Account'} link={'/home'} />
+            <NiceButton color={'#256EFF'} text={'Back'} link={'/'}/>
           </Form>
         </Content>
       </Container>
@@ -57,4 +54,3 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
 });
-
