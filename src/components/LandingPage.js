@@ -21,7 +21,7 @@ export default class LandingPage extends React.Component {
         <Content contentContainerStyle={styles.container}>
           <Title style={{fontSize: 60, color: '#FCFCFC'}}>Sprouty</Title>
           <NiceButton color={'#256EFF'} text={'Login'} link={'/login/username'}/>
-          <NiceButton color={'#FF495C'} text={'Sign Up'}/>
+          <NiceButton color={'#FF495C'} text={'Sign Up'} link={'/signup'}/>
         </Content>
       </Container>
     );

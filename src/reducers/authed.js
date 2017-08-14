@@ -3,7 +3,6 @@ import * as types from '../constants/ActionTypes';
 const initialState = {
   accessToken: null,
   plants: [],
-  user: null,
   likedPlants:[],
 };
 
