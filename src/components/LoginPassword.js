@@ -1,31 +1,45 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Container, Header, Content,Text, Button, Title, Form, Item, Input, Label } from 'native-base';
+import { Container, Header, Content, Text, Button, Title, Form, Item, Input, Label } from 'native-base';
 import { withRouter } from 'react-router-native';
-
-const NiceButton = withRouter(({ history, color, text, link}) => (
-  <Button block light
-    style={{margin: 20, backgroundColor: color}}
-    onPress={() => {
-      history.push(link)
-    }}
-  >
-    <Text style={{color: '#FCFCFC'}}>{text}</Text>
-  </Button>
-))
+import PassButton from './PassButton';
 
 export default class LoginPassword extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      password: ''
+    }
+    this.titleHandler = this.titleHandler.bind(this);
+  }
+
+  titleHandler(text) {
+    this.setState({ password: text });
+  }
+
   render() {
+    console.log(this.props);
+
     return (
       <Container>
-        <Content contentContainerStyle={styles.container}>
-          <Title style={{fontSize: 60, color: '#FCFCFC'}}>Sprouty</Title>
-          <Form style={{alignSelf: 'stretch', padding: 30}}>
+        <Content
+          contentContainerStyle={styles.container}
+        >
+          <Title style={styles.color}>Sprouty</Title>
+          <Form style={styles.form}>
             <Item fixedLabel>
               <Label>Password</Label>
-              <Input />
+              <Input
+                onChangeText={this.titleHandler}
+              />
             </Item>
-            <NiceButton color={'#FF495C'} text={'Go'} link={'/home'} />
+            <PassButton
+              color={'#FF495C'}
+              text={'Password'}
+              link={'/home'}
+              authUser={this.props.authUser} user={{email: this.props.user.email, password: this.state.password}}
+              history={this.props.history
+              } />
           </Form>
         </Content>
       </Container>
@@ -40,4 +54,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  form: {
+    alignSelf: 'stretch',
+    padding: 30
+  },
+  title: {
+    fontSize: 60,
+    color: '#FCFCFC'
+  }
 });

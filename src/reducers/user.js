@@ -5,7 +5,8 @@ const initialState = {
   last_name: null,
   email: null,
   profile_pic: null,
-  rating: null
+  rating: null,
+  accessToken: null
 };
 
 export default function user(state = initialState, action) {
@@ -14,7 +15,10 @@ export default function user(state = initialState, action) {
       return Object.assign({}, state, {
         email: action.userEmail,
       });
-
+    case types.AUTHORIZED_USER:
+      return Object.assign({}, state, {
+        user: action.user
+      });
     default:
       return state;
   }
