@@ -1,19 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Container, Header, Content,Text, Button, Title, Form, Item, Input, Label } from 'native-base';
-import { withRouter } from 'react-router-native';
-
-const NiceButton = withRouter(({ history, color, text, link,addEmail, email}) => (
-  <Button block light
-    style={{margin: 20, backgroundColor: color}}
-    onPress={() => {
-      addEmail(email);
-      history.push(link)
-    }}
-  >
-    <Text style={{color: '#FCFCFC'}}>{text}</Text>
-  </Button>
-))
+import { Container, Header, Content,Text, Title, Form, Item, Input, Label } from 'native-base';
+import NiceButton from './NiceButton';
 
 export default class LoginUsername extends React.Component {
   constructor(props) {
@@ -24,24 +12,31 @@ export default class LoginUsername extends React.Component {
     this.titleHandler = this.titleHandler.bind(this);
   }
 
-  titleHandler(e) {
-    let {value} = e.target;
-    console.log(e.target.value);
-    this.setState({email: value});
+  titleHandler(text) {
+    this.setState({email: text});
   } 
 
   render() {
-    
     return (
       <Container>
-        <Content contentContainerStyle={styles.container}>
-          <Title style={{fontSize: 60, color: '#FCFCFC'}}>Sprouty</Title>
-          <Form style={{alignSelf: 'stretch', padding: 30}}>
+        <Content 
+          contentContainerStyle={styles.container}
+        >
+          <Title style={styles.color}>Sprouty</Title>
+          <Form style={styles.form}>
             <Item fixedLabel>
               <Label>Username</Label>
-              <Input onChange={this.titleHandler}/>
+              <Input 
+                onChangeText={this.titleHandler}
+              />
             </Item>
-            <NiceButton color={'#FF495C'} text={'Password'} link={'/login/password'} addEmail={this.props.addEmail} email={this.state.email}/>
+            <NiceButton 
+              color={'#FF495C'} 
+              text={'Password'} 
+              link={'/login/password'} 
+              addEmail={this.props.addEmail} email={this.state.email} 
+              history={this.props.history
+            }/>
           </Form>
         </Content>
       </Container>
@@ -56,5 +51,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  form: {
+    alignSelf: 'stretch',
+    padding: 30
+  },
+  title: {
+    fontSize: 60, 
+    color: '#FCFCFC'
+  }
 });
 
