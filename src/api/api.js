@@ -3,15 +3,18 @@ import {API_SIGNIN} from './urls';
 
 export default function fetchAuthedUser(credentials) {
     return (
-      request
-        .post(API_SIGNIN)
-        .set('Content-Type','application/json')
-        .send(JSON.stringify(credentials))
-        .then(res => {
-            console.log(res);
-            return JSON.parse(res.text);
+      fetch(API_SIGNIN, {
+          method: 'post',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(credentials)
+      })
+      .then(res => {
+        return res.json()
         })
-        .catch(error => console.log(error))
-        .done()
+      .then(res => res)
+      .catch(err => console.log(err))
     );
 }

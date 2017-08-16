@@ -1,4 +1,4 @@
 //=====================================
 //  API
 //-------------------------------------
-export const API_SIGNIN = `http://localhost:5050/api/auth/signin`;
+export const API_SIGNIN = `/api/auth/signin`;
