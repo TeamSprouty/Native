@@ -1,0 +1,2 @@
+export const AUTHORIZED_USER = 'AUTHORIZED_USER';
+export const OBTAINED_EMAIL = 'OBTAINED_EMAIL';
